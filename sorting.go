@@ -1,4 +1,4 @@
-package main
+package sorting
 
 // Bubble - Loop through the array check each adjacent number if the next one is bigger than the current then switch them
 func Bubble(arr []int) []int {
