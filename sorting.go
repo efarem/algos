@@ -67,3 +67,29 @@ func Merge(arr []int) []int {
 	r := Merge(arr[mid:])
 	return merge(l, r)
 }
+
+// Quick - Using the last item as the pivot, recursively split into to halves, those bigger than the pivot and those smaller, then stitch them together
+func Quick(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
+	}
+
+	result := make([]int, 0, len(arr))
+	pivot := arr[len(arr)-1]
+	left := make([]int, 0, len(arr)/2)
+	right := make([]int, 0, len(arr)/2)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] < pivot {
+			left = append(left, arr[i])
+		} else {
+			right = append(right, arr[i])
+		}
+	}
+
+	result = append(result, Quick(left)...)
+	result = append(result, pivot)
+	result = append(result, Quick(right)...)
+
+	return result
+}
